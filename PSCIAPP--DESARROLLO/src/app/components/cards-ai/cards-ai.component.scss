@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300..700&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sedan:ital@0;1&display=swap');
+
+
+.teko-title {
+  font-family: "Teko", sans-serif;
+  font-weight: 300; /* Puedes ajustar el peso de la fuente según tus preferencias */
+  font-size: 24px;
+  font-weight: bold;
+  color: #D4B2A7;
+}
+ion-label{
+  margin-left: 10px;
+  font-family: "Teko", sans-serif;
+  font-size: 18px;
+}
+
+.teko-content {
+  font-family: "Teko", sans-serif;
+  font-size: 18px
+}
+
+ion-content {
+  --ion-background-color: #EDE9E3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+ion-toolbar {
+  --ion-background-color: #EDE9E3;
+  color: #ADD9D9;
+}
+
+ion-title {
+  text-align: center;
+}
+
+ion-button {
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  font-family: 'Arial', sans-serif;
+  margin: 15px; /* Separación de 15px del borde */
+}
+
+ion-button:hover {
+  transform: scale(1.05);
+}
+
+ion-button[selected='true'] {
+  background-color: #EDE9E3; /* Cambié el color de fondo cuando está deshabilitado */
+  color: #F2E5D5;
+}
+
+ion-button[selected='false'] {
+  background-color: #EDE9E3; /* Cambié el color de fondo cuando está habilitado */
+  color: #F2E5D5;
+}
+
+ion-card {
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s; /* Agregamos la transición de la sombra */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 270px; /* Aumentar el ancho */
+  background-color: #EDE9E3; 
+  color: #000; /* Color de texto negro */
+  display: grid;
+  justify-content: center;
+  border-radius: 20px;
+
+}
+
+ion-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumentamos la sombra al pasar el ratón */
+}
+
+ion-card.selected {
+  border: 2px solid #4caf50;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Mantenemos la sombra cuando está seleccionado */
+}
+
+ion-card-content {
+  padding: 15px; /* Ajustar el espacio interior */
+}
+
+/* Ajustar el tamaño del título y el contenido */
+
+ion-card-title,
+ion-card-content {
+  font-size: 14px; /* Tamaño de fuente personalizado */
+}
+
+ion-card-title{
+ color:#ffffff;
+ font-weight: bold;
+}
+
+ion-img {
+  width: 100%; /* Ajustar la imagen al ancho del ion-card */
+  height: 150px; /* Altura de la imagen */
+  object-fit: cover; /* Ajustar la imagen dentro del ion-card */
+}

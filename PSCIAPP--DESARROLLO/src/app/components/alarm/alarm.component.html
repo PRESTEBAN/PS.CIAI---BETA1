@@ -1,0 +1,12 @@
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Hora de activación</ion-label>
+    <ion-datetime
+      displayFormat="HH:mm"
+      pickerFormat="HH:mm"
+      [(ngModel)]="activationTime"
+    ></ion-datetime>
+  </ion-item>
+
+  <ion-button (click)="saveAlarmSettings()">Guardar configuración</ion-button>
+</ion-content>

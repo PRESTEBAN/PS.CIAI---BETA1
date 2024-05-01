@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sedan:ital@0;1&display=swap');
+
+*{
+  font-family: "Montserrat", sans-serif;
+}
+ion-toolbar{
+  --background:#E7D7C9;
+  color: #A38F85;
+  display: flex;
+  justify-content: space-around;
+  font-family: "Sedan", serif;
+}
+.chat-item{
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --background: #A38F85;
+  
+  &.bot{
+    --background: transparent;
+  }
+}
+ion-content{
+  --background: #EDE9E3;  
+}
+.text-box-item{
+  --border-radius: 15px;
+  --background: #A38F85;
+}
+ion-badge{
+  padding: 0px;
+}
+
+.w-space{
+  white-space: pre-line;
+}
+
+.submit-icon{
+  font-size: 25px;
+}
+
+.empty{
+  text-align: center;
+  padding-top: 25vh;
+  opacity: 30%;
+  color: #A38F85;
+  ion-icon {
+    font-size: 120px;
+    color: #A38F85;
+  }
+}
+ion-footer{
+  background-color: #E7D7C9;
+}
+form{
+  background-color: #E7D7C9;
+}
+ion-item{
+  border-bottom: solid 0.1px #ffffff;
+}
+p{
+  background-color: #E7D7C9;
+  padding: 5PX;
+  color: #A38F85;
+  border-radius: 20PX;
+}
+
+.chat-icon {
+  width: 30px; /* Ajusta el ancho según tus necesidades */
+  height: 30px; /* Ajusta la altura según tus necesidades */
+  background-size: cover; /* Ajusta la propiedad según tus necesidades */
+  --background: #A38F85; 
+}
+
+.chat-item.user {
+  --background: #EDE9E3;
+}
+
+/* Establece el color de fondo transparente para los mensajes del bot */
+.chat-item.bot {
+  --background: #EDE9E3;
+}
+
+.chat-item.user {
+  --background: #EDE9E3;
+}

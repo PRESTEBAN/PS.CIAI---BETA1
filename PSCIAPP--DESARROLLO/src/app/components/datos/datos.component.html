@@ -1,0 +1,84 @@
+<ion-content class="ion-padding" auto>
+  <div class="cont">
+    <div class="form-container">
+      <div class="texto">  
+        <ion-label id="titulo"><strong>BIENVENIDO</strong></ion-label><br><br>
+        <ion-label id="subtitulo">Hola, ayudanos rellenando los siguientes datos que te ayudar a tener una mejor interaccion con <strong>PSCI.IA</strong></ion-label>
+      </div>
+      <div class="logo"> 
+        <img src="../../assets/logo.jpg" alt=""> 
+      </div> 
+      <form (ngSubmit)="submitForm()">
+        <ion-list>
+          <!-- Campo para el nombre -->
+          <ion-item >
+          <ion-label class="nacimientoText" position="floating"><strong>Como te gustaria que te llame PSCI.IA : </strong></ion-label>
+            <ion-input [(ngModel)]="nombre" name="nombre" required></ion-input>
+          </ion-item>
+          <br>
+
+          <!-- Encabezado para la fecha de nacimiento -->
+          <ion-label class="nacimientoText"><strong>Elige tu fecha de nacimiento:</strong></ion-label>
+          <!-- Lista desplegable horizontal para día/mes/año -->
+          <ion-item>
+            <ion-label>Día</ion-label>
+            <ion-select [(ngModel)]="dia" interface="popover" name="dia">
+              <ion-select-option *ngFor="let diaOption of dias" [value]="diaOption">
+                {{ diaOption }}
+              </ion-select-option>
+            </ion-select>
+
+            <ion-label>Mes</ion-label>
+            <ion-select [(ngModel)]="mes" interface="popover" name="mes">
+              <ion-select-option *ngFor="let mesOption of meses" [value]="mesOption">
+                {{ mesOption }}
+              </ion-select-option>
+            </ion-select>
+
+            <ion-label>Año</ion-label>
+            <ion-select [(ngModel)]="ano" interface="popover" name="ano">
+              <ion-select-option *ngFor="let anoOption of anos" [value]="anoOption">
+                {{ anoOption }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <br>
+
+          <!-- elegible hombre y mujer -->
+          <ion-label class="nacimientoText"><strong>¿Cuál es tu genero?</strong></ion-label>
+          <ion-radio-group [(ngModel)]="genero" name="genero">
+            <div class="gene">
+              <div class="mas">
+                <ion-radio value="MASCULINO">MASCULINO</ion-radio><br />
+              </div>
+              <div class="fem">
+                <ion-radio value="FEMENINO">FEMENINO</ion-radio><br />
+              </div>
+            </div>
+          </ion-radio-group>
+          
+            
+          <!-- Otros campos del formulario -->
+          <div class="botones">
+            <ion-button expand="default" fill="outline" type="submit" class="but" color="warning" shape="round">Enviar</ion-button>
+            <br>
+            <ion-button expand="full" fill="outline" (click)="recibirDatos()" class="but" color="warning" shape="round">Recibir datos</ion-button>
+          </div>
+        
+          <!-- Datos recibidos -->
+          <div *ngIf="misDatos.length > 0">
+            <p>Datos recibidos:</p>
+            <ul>
+              <li *ngFor="let dato of misDatos" class="datos-list-item">
+                <strong>Nombre:</strong> {{ dato.nombre }}<br>
+                <strong>Fecha de Nacimiento:</strong> {{ dato.fechaNacimiento }}
+              </li>
+            </ul>
+          </div>
+        </ion-list>
+      </form>
+    </div>
+    <!-- Loading indicator -->
+    <ion-loading *ngIf="loading" message="Cargando..."></ion-loading>
+  </div>
+</ion-content>

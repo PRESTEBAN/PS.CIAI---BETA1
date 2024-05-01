@@ -1,0 +1,131 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">This is the menu content.</ion-content>
+  <ion-footer  color="secondary">
+    <div class="cerrarS">
+      <ion-button >
+        Logout
+      </ion-button>
+    </div>
+  </ion-footer>
+</ion-menu>
+
+<div class="ion-page" id="main-content"></div>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Bienvenido, {{ nombreUsuario }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="cont">
+
+    <ion-card class="box" id="estAnimo">
+      <ion-card-header>
+        <ion-card-title><b> Estado de Animo </b></ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="week-card">
+          <div class="day-item"> <strong></strong>12</div>
+          <div class="day-item">13</div>
+          <div class="day-item">14</div>
+          <div class="day-item">15</div>
+          <div class="day-item">16</div>
+          <div class="day-item">17</div>
+          <div class="day-item" id="se">18</div>
+        </div>
+        <br>
+        <div class="mood-card">
+          <div class="mood-item">
+            😄
+          </div>
+          <div class="mood-item" id="se">
+            😊
+          </div>
+          <div class="mood-item">
+            🙂
+          </div>
+          <div class="mood-item">
+            😐
+          </div>
+          <div class="mood-item">
+            😔
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="box" id="ejercicios">
+      <ion-card-header>
+        <ion-card-title><b>Recomendaciones</b></ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Intenta practicar la respiración profunda y consciente durante unos minutos cada día.
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="box" id="ejercicios">
+      <ion-card-header>
+        <ion-card-title><b>Ejercicios</b></ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        
+        <ion-label>Respiración 4-7-8:</ion-label><br>
+        <ion-label>Siéntate en una posición cómoda y coloca una mano en tu abdomen y la otra en tu pecho.</ion-label><br>
+        <ion-label>Cierra los ojos y exhala completamente por la boca, haciendo un sonido de "soplido".</ion-label><br>
+        <ion-label>Inhala silenciosamente por la nariz contando hasta 4.</ion-label><br>
+        <ion-label>Retén la respiración durante 7 segundos.</ion-label><br>
+        <ion-label>Exhala completamente por la boca, haciendo el sonido de "soplido", contando hasta 8.</ion-label><br>
+        <ion-label>Repite este ciclo al menos tres veces, o hasta que te sientas más calmado/a.</ion-label><br>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="box" id="ayuda">
+      <ion-card-header>
+        <ion-card-title><b>¿Necesitas ayuda?</b></ion-card-title>
+      </ion-card-header>
+    
+      <ion-button>
+        clik aqui
+      </ion-button>
+    </ion-card>
+   
+  </div>
+
+</ion-content>
+<ion-footer class="ion-no-border">
+  <div class="barNav">
+    <div class="bar">
+      <div class="icon" id="select">
+          <div class="bitacora">
+            <img src="../../assets/diario.png" alt="" (click)=" irPrincipal()">
+          </div>
+      </div>
+      <div class="icon">
+          <div class="chat">
+            <img src="../../assets/chatbot.png" alt="" (click)="irChat()">
+          </div>
+      </div>
+      <div class="icon">
+        <a href="../">
+          <div class="cuenta">
+            <img src="../../assets/usuario.png" alt="">
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</ion-footer>

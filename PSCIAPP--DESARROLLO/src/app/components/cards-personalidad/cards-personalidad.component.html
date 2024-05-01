@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Selecciona la personalidad de PSCYAI
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let card of cards; let i = index">
+        <ion-card (click)="selectCard(i)" [class.selected]="selectedCard === i">
+          <img src="{{card.image}}" alt="{{card.name}}">
+          <ion-card-content>
+            {{card.name}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button [disabled]="!buttonEnabled" (click)="toggleButton()" expand="full" [class.animate]="buttonClicked" (click)="goToChat()" >
+    {{ buttonEnabled ? 'Continuar' : 'Selecciona una opción' }} 
+  </ion-button>
+
+  
+</ion-content>

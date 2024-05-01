@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sedan:ital@0;1&display=swap');
+
+ion-content {
+    --ion-background-color: #F2E5D5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  ion-toolbar {
+    --ion-background-color: #254A59;
+    color: #ADD9D9;
+  }
+  
+  ion-title {
+    text-align: center;
+  }
+  
+  ion-button {
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    font-family: 'Arial', sans-serif;
+    margin: 15px; /* Separación de 15px del borde */
+  }
+  
+  ion-button:hover {
+    transform: scale(1.05);
+  }
+  
+  ion-button[selected='true'] {
+    background-color: #254A59; /* Cambié el color de fondo cuando está deshabilitado */
+    color: #F2E5D5;
+  }
+  
+  ion-button[selected='false'] {
+    background-color: #536FA6; /* Cambié el color de fondo cuando está habilitado */
+    color: #F2E5D5;
+  }
+  
+  ion-card {
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s; /* Agregamos la transición de la sombra */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumentamos la sombra al pasar el ratón */
+  }
+  
+  ion-card.selected {
+    border: 2px solid #4caf50;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Mantenemos la sombra cuando está seleccionado */
+  }
+  
+  ion-button {
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    font-family: 'Arial', sans-serif;
+    margin: 15px;
+  }
+  
+  ion-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumentamos la sombra al pasar el ratón */
+  }
+  
+  ion-button[selected='true'] {
+    background-color: #254A59;
+    color: #F2E5D5;
+  }
+  
+  ion-button[selected='false'] {
+    background-color: #536FA6;
+    color: #F2E5D5;
+  }
+  

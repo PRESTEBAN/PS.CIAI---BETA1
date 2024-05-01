@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Registro de usuario
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
+      <ion-item class="mb-3">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+      </ion-item>
+      
+      <ion-item class="mb-3">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      
+      <ion-button expand="full" type="submit">Enviar</ion-button>
+    </form>
+  </ion-content>

@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true">
+  <div class="general"> <!-- Este el el contenedor general que engloba todos los elementos que estan adentro -->
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <div class="texto">
+      <ion-label id="titulo">Registrate en PSICAI</ion-label>
+      <div class="contTex">
+        <ion-label id="text">Descubre nuestra aplicacion e indaga todas sus funcionalidades que te ayudaran con tu estado emocional</ion-label>
+      </div>
+    </div>
+    <div class="text-sub">
+      <ion-label>Correo y Contraseña</ion-label>
+    </div>
+    <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
+      <ion-item class="mb-3">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+      </ion-item> 
+      <ion-item class="mb-3">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <div class="button">
+      <ion-button class="boton" shape="round" type="submit" color="tertiary" >Registrarse</ion-button>
+    </div> 
+    </form>
+    <div class="iSesionCon">
+      <div class="or">
+        <div class="rectangle-2"></div>
+      </div>
+    </div>
+    <div class="textos">
+      <div id="texinf">
+        <ion-label id="terCond">Al registrarte aceptas todos nuestros terminos y condicione y nuestra plotica de privacidad de esta aplicacion</ion-label>
+      </div>
+      <ion-label>¿Aún no tienes una cuenta? </ion-label>
+      <a href="login"><ion-label>Login</ion-label></a>
+    </div>
+  </div>
+</ion-content>

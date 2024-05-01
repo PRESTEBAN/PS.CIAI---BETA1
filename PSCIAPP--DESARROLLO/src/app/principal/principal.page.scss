@@ -1,0 +1,148 @@
+
+ion-header{
+    --ion-baground:#00bbff;
+}
+
+ion-content {
+    --background: linear-gradient(to bottom,var(--ion-background-color), #5dbba7 );
+    --ion-background-color:  #4697B4;
+    background-color: #5c5a5a;
+    width: 100%;
+    vertical-align: middle;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ion-toolbar{
+    --background: #4697B4;
+    --bion-border-radius: 20px;
+}
+
+.cont{
+    background: linear-gradient(to bottom,rgba(255, 255, 255,1), rgba(255, 255, 255,0) );
+    width: 90%;
+    margin: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px 0 20px 0;
+    color: #000000;
+}
+.box{background-color: #4697a2;
+    margin: 5%;
+    width: 90%;
+    height: auto;
+    padding: 7px;
+    border-radius: 20px;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#recomendaciones{
+    background-color: #8aa9d3;
+}
+#ejercicios{
+    background-color: #8ab9d3;
+}
+ion-card-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: start;
+}
+ion-label{
+    --background:  rgba(138, 217, 210,0);
+    padding-right:10%;
+    padding-left:10%;
+    white-space: inherit;
+}
+#estAnimo{
+    background-color: #8ac9d3;
+}
+#ayuda{
+    background-color: #8ad9d3;
+}
+
+
+
+/*barra de navegacion */
+ion-footer{
+    --ion-baground:#5dbba7;
+}
+img{
+    width: 40px;
+    height: 40px;
+}
+
+.barNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar{
+    width: 65%;
+    margin: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    border: solid 2px #F1E6D2;
+    border-radius: 35px;
+}
+
+.icon{
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#select{
+    background-color: #87ddff;
+}
+.mood-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 50px;
+    background: linear-gradient(to right,rgba(21, 255, 0, 0.514), rgba(0, 195, 255, 0.445) );
+}
+
+.mood-item {
+    font-size: 36px;
+    border-radius: 70%;
+    padding: 5px;
+    background-color: white;
+}
+
+
+#se{
+    background-color: #4f6b6b;
+    color: white;
+}
+.week-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: #427470;
+}
+
+.day-item {
+    font-size: 24px;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: white;
+}
