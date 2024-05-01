@@ -196,4 +196,4 @@ app.post('/', async (req, res) => {
     res.status(500).send({ error });
   }
 });
-app.listen(3000, () => console.log('Server is running on port https://noce-ir2h.onrender.com'))
+app.listen(3000, () => console.log('Server is running on port https://ps-ciai-beta1.onrender.com/'))

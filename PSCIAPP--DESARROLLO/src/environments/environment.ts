@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://noce-ir2h.onrender.com',
+  baseUrl: 'https://ps-ciai-beta1.onrender.com/',
   firebaseConfig : {
     apiKey: "AIzaSyBeDocnIWswkLe7U6EMiULZaziccAiZiX4",
     authDomain: "viberisedb-8b4cb.firebaseapp.com",
