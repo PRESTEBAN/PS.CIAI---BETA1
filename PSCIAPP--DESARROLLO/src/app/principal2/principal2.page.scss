@@ -304,3 +304,41 @@ ion-list{
     background: #EDE9E3;
 
 }
+
+ion-item {
+    --ion-item-padding-start: 5%; /* Aumenta el espacio interno del ion-item */
+    --ion-item-padding-end: 5%;
+    width: 90%; /* Ancho del ion-item */
+    margin: 10px auto; /* Centra el ion-item y agrega un espacio entre ellos */
+  }
+  
+  ion-select {
+    width: 100%; /* Ancho del ion-select */
+  }
+  
+  /* Ajustes adicionales para hacer el ion-label más ancho */
+  ion-label {
+    width: 100%; /* Ancho del ion-label */
+    text-align: center; /* Centra el texto dentro del ion-label */
+  }
+  
+  /* Ajustes para los ion-select-option */
+  ion-select-option {
+    width: 100%; /* Ancho del ion-select-option */
+  }
+  
+  .custom-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .custom-item .hidden {
+    opacity: 0;
+  }
+
+  .custom-item ion-select {
+    font-size: 14px; /* Ajusta el tamaño de fuente según sea necesario */
+  }
+  
+  

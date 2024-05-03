@@ -134,10 +134,6 @@ export class DatosCorreoComponent implements OnInit {
     }
   }
 
-
-
-
-
 // Inicializa la hora seleccionada
 horaSeleccionada = {
   ampm: 'AM',
@@ -237,8 +233,13 @@ async lanzarNotificacion() {
             allowWhileIdle: true // Permite que la notificación se ejecute incluso durante el modo reposo
           },
           sound: "beep.wav",
-          smallIcon: "ic_stat_icon_config_sample",
-          iconColor: "#488AFF"
+          actionTypeId: "",
+          extra: {
+            showWhenSuspended: true, // Muestra la notificación incluso cuando el dispositivo esté en suspensión
+            vibrate: true, // Activa la vibración cuando se muestre la notificación
+            priority: 2, // Prioridad de la notificación, 2 es alta prioridad
+            importance: 2 // Importancia de la notificación, 2 es alta importancia
+          }
         }
       ]
     });

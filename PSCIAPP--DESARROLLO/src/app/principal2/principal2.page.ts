@@ -6,6 +6,8 @@ import { AngularFirestore,AngularFirestoreCollection, QueryFn } from '@angular/f
 import { Subscription } from 'rxjs';
 import firebase from 'firebase/compat/app'; 
 import { ToastController } from '@ionic/angular';
+import { LocalNotifications } from '@capacitor/local-notifications';
+import 'firebase/compat/database';
 
 @Component({
   selector: 'app-principal2',
@@ -31,7 +33,9 @@ export class Principal2Page implements OnInit, OnDestroy {
   contadorTriste: number = 0;
   estadoAnimo: string = ''; 
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router, private firestore: AngularFirestore, private toastController: ToastController) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router, private firestore: AngularFirestore, private toastController: ToastController) {
+    this.actualizarHorasBola();
+   }
 
   ngOnInit() {
     const userId = this.userService.getUserId();
@@ -57,9 +61,80 @@ export class Principal2Page implements OnInit, OnDestroy {
         this.loadSecondCard(userId);
       }
     });
+    this.verificarHorasBola();
+    this.actualizarHorasBola();
   }
 
+  horaSeleccionada = {
+    ampm: 'AM',
+    hora: 12,
+    minuto: 0
+  };
   
+
+  horas: number[] = [];
+  minutos: number[] = Array.from({ length: 60 }, (_, i) => i);
+  horaMostrada = '';
+
+  actualizarHorasBola() {
+    if (this.horaSeleccionada.ampm === 'AM') {
+      this.horas = Array.from({ length: 12 }, (_, i) => (i === 0 ? 12 : i + 1));
+    } else {
+      this.horas = Array.from({ length: 12 }, (_, i) => i + 12);
+    }
+  }
+
+  async guardarHorasBola() {
+    console.log('Hora seleccionada:', this.horaSeleccionada);
+    const userId = this.userService.getUserId(); // Obtener el ID del usuario
+    if (userId) {
+      try {
+        await this.firestore.collection('timeaparate').doc(userId).set({
+          hora: this.horaSeleccionada.hora,
+          minuto: this.horaSeleccionada.minuto,
+          ampm: this.horaSeleccionada.ampm
+        });
+        console.log('Hora guardada en Firebase.');
+      } catch (error) {
+        console.error('Error al guardar la hora en Firebase:', error);
+      }
+    }
+  }
+
+  verificarHorasBola() {
+    setInterval(async () => {
+      const userId = this.userService.getUserId(); // Obtener el ID del usuario
+      if (userId) {
+        const userDoc = await this.firestore.collection('timeaparate').doc(userId).get().toPromise();
+        if (userDoc && userDoc.exists) {
+          const horaGuardada = userDoc.data() as any;
+          const horaAMPM = horaGuardada.ampm;
+          let hora = horaGuardada.hora;
+
+          const horaActual = new Date();
+          const horaActual24 = horaActual.getHours();
+          const minutoActual = horaActual.getMinutes();
+          
+          if (horaAMPM === 'PM' && hora < 12) {
+            hora += 12; // Convertir a formato de 24 horas si es PM y no es medianoche
+          } else if (horaAMPM === 'AM' && hora === 12) {
+            hora = 0; // Convertir a formato de 24 horas si es medianoche
+          }
+  
+  
+          if (hora === horaActual24 && horaGuardada.minuto === minutoActual) {
+            const ultimaNotificacion = horaGuardada.ultimaNotificacion?.toDate();
+            if (!ultimaNotificacion || horaActual.getTime() - ultimaNotificacion.getTime() >= 24 * 60 * 60 * 1000) {
+              this.lanzarNotificacionBola();
+              await this.firestore.collection('timeaparate').doc(userId).update({
+                ultimaNotificacion: new Date()
+              });
+            }
+          }
+        }
+      }
+    }, 1000); // Verificar cada minuto
+  }
 
   loadSundayCard() {
     let cardList: string[] = [];
@@ -387,4 +462,32 @@ logout() {
   });
 }
 
+async lanzarNotificacionBola() {
+  try {
+    await LocalNotifications.schedule({
+      notifications: [
+        {
+          title: "Hora de relajarse!",
+          body: "¡Hora de relajarse!, es tiempo de usar tu ",
+          id: 2,
+          schedule: { 
+            at: new Date(Date.now() + 1000), // Puedes ajustar el tiempo de espera aquí
+            allowWhileIdle: true // Permite que la notificación se ejecute incluso durante el modo reposo
+          },
+          sound: "beep.wav",
+          actionTypeId: "",
+          extra: {
+            showWhenSuspended: true, // Muestra la notificación incluso cuando el dispositivo esté en suspensión
+            vibrate: true, // Activa la vibración cuando se muestre la notificación
+            priority: 2, // Prioridad de la notificación, 2 es alta prioridad
+            importance: 2 // Importancia de la notificación, 2 es alta importancia
+          }
+        }
+      ]
+    });
+    console.log('Notificación programada con éxito.');
+  } catch (error) {
+    console.error('Error al programar la notificación:', error);
+  }
+}
 }
