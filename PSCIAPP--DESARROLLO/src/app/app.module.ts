@@ -46,7 +46,6 @@ import { getDatabase, provideDatabase } from '@angular/fire/database';
            provideFirebaseApp(() => initializeApp({"projectId":"viberisedb-8b4cb","appId":"1:415215164118:web:5290e0f168c90b4d5d4777","storageBucket":"viberisedb-8b4cb.appspot.com","apiKey":"AIzaSyBeDocnIWswkLe7U6EMiULZaziccAiZiX4","authDomain":"viberisedb-8b4cb.firebaseapp.com","messagingSenderId":"415215164118","measurementId":"G-HLJQ2JSGJ2"})),
            provideAuth(() => getAuth()),
            provideAnalytics(() => getAnalytics()),
-           provideFirebaseApp(() => initializeApp({"projectId":"viberisedb-8b4cb","appId":"1:415215164118:web:5290e0f168c90b4d5d4777","databaseURL":"https://viberisedb-8b4cb-default-rtdb.firebaseio.com","storageBucket":"viberisedb-8b4cb.appspot.com","locationId":"us-central","apiKey":"AIzaSyBeDocnIWswkLe7U6EMiULZaziccAiZiX4","authDomain":"viberisedb-8b4cb.firebaseapp.com","messagingSenderId":"415215164118","measurementId":"G-HLJQ2JSGJ2"})),
            provideDatabase(() => getDatabase()),
           ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ScreenTrackingService, UserTrackingService],

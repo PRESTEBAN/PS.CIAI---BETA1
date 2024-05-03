@@ -130,6 +130,17 @@ export class Principal2Page implements OnInit, OnDestroy {
                 ultimaNotificacion: new Date()
               });
             }
+
+            const motorRef = firebase.database().ref('Dispositivos/Motor');
+            motorRef.set(true); // Encender el motor
+          
+            const motor2Ref = firebase.database().ref('Dispositivos/Motor2');
+            motor2Ref.set(true); // Encender el segundo motor
+          
+            setTimeout(() => {
+              motorRef.set(false); // Apagar el motor después de 5 minutos
+              motor2Ref.set(false); // Apagar el segundo motor después de 5 minutos
+            }, 5 * 60 * 1000); // 5 minutos en milisegundos
           }
         }
       }
