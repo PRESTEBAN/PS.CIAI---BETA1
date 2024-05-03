@@ -22,6 +22,7 @@ export class Principal2Page implements OnInit, OnDestroy {
   nombreUsuarioCorreo: string = '';
   currentCard: any;
   secondCard: any;
+  sundaycard : any;
   userCardsSubscription: Subscription | undefined = undefined;
   timer: any = undefined; // Inicializar la propiedad timer
   isUpdatingCards: boolean = false; 
@@ -49,6 +50,7 @@ export class Principal2Page implements OnInit, OnDestroy {
     this.userCardsSubscription = this.firestore.collection('user_cards').doc(userId).valueChanges().subscribe((userData: any) => {
       this.currentCard = userData.currentCard;
       this.secondCard = userData.secondCard;
+
       
       if (!userData.currentCard || !userData.secondCard) {
         this.loadRandomCard(userId);
@@ -57,7 +59,44 @@ export class Principal2Page implements OnInit, OnDestroy {
     });
   }
 
+  
 
+  loadSundayCard() {
+    let cardList: string[] = [];
+  
+    switch (this.estadoAnimo) {
+      case 'feliz':
+        cardList = ['card10', 'card14', 'card22', 'card5', 'card7', 'card8', 'card20', 'card26', 'card6'];
+        break;
+      case 'neutral':
+        cardList = ['card1', 'card11', 'card12', 'card16', 'card18', 'card19', 'card24', 'card26', 'card6'];
+        break;
+      case 'triste':
+        cardList = ['card2', 'card3', 'card4', 'card9', 'card13', 'card15', 'card17', 'card21', 'card23', 'card25', 'card27'];
+        break;
+      default:
+        console.error('Estado de ánimo no reconocido');
+        return;
+    }
+  
+    const randomCardId = cardList[Math.floor(Math.random() * cardList.length)];
+  
+    this.firestore.collection('cards').doc(randomCardId).get().subscribe(doc => {
+      if (doc.exists) {
+        const data = doc.data() as any;
+        // Asignar los datos de la tarjeta a sundaycard
+        this.sundaycard = {
+          titulo: data.titulo,
+          contenido: data.contenido,
+          imagen: data.imagen
+        };
+      } else {
+        console.error('La tarjeta seleccionada no existe en la base de datos.');
+      }
+    }, error => {
+      console.error('Error al cargar la tarjeta:', error);
+    });
+  }
 
 
   loadUserCards(userId: string) {
@@ -194,24 +233,23 @@ export class Principal2Page implements OnInit, OnDestroy {
   }
 
   activarSoloDomingo() {
-
     const today = new Date();
     const dayOfWeek = today.getDay();
-
+  
     if (dayOfWeek === 0) {
       this.contadorFeliz = 0;
       this.contadorNeutral = 0;
       this.contadorTriste = 0;
-
+  
       const firstDayOfWeek = new Date(today);
       firstDayOfWeek.setDate(today.getDate() - today.getDay() + 1);
-
+  
       for (let i = 0; i < 7; i++) {
         const currentDate = new Date(firstDayOfWeek);
         currentDate.setDate(firstDayOfWeek.getDate() + i);
-
+  
         const field = `day${currentDate.getDate()}`;
-
+  
         const userId = this.userService.getUserId();
         if (userId) {
           const docRef = this.firestore.collection('Calendario').doc(userId);
@@ -237,28 +275,22 @@ export class Principal2Page implements OnInit, OnDestroy {
           });
         }
       }
-
+  
       if (this.contadorFeliz > this.contadorNeutral && this.contadorFeliz > this.contadorTriste) {
-        this.backgroundImageUrlAI = 'assets/img/feliz.jpg';
-        this.cardTitleAI = 'Feliz';
-        this.cardContentAI = 'Contenido para cuando el estado de ánimo predominante es feliz.';
+        this.loadSundayCard();
       } else if (this.contadorTriste > this.contadorFeliz && this.contadorTriste > this.contadorNeutral) {
-        this.backgroundImageUrlAI = 'assets/img/triste.jpg';
-        this.cardTitleAI = 'Triste';
-        this.cardContentAI = 'Contenido para cuando el estado de ánimo predominante es triste.';
+        this.loadSundayCard();
       } else {
-        this.backgroundImageUrlAI = 'assets/img/neutral.jpg';
-        this.cardTitleAI = 'Neutral';
-        this.cardContentAI = 'Contenido para cuando el estado de ánimo predominante es neutral.';
+        this.loadSundayCard();
       }
-
+  
       this.mostrarComponenteAI = true;
     } else {
       this.mostrarComponenteAI = true;
       console.log('Hoy no es domingo.');
-      
     }
   }
+
 
   seleccionarEstadoAnimo(estado: string) {
     this.estadoAnimo = estado;

@@ -49,12 +49,14 @@
             (click)="seleccionarEstadoAnimo('feliz')"
             class="emoji-icon animate__animated animate__zoomIn"
           ></ion-icon>
+
           <ion-icon
-            [ngClass]="{'emoji-selected': estadoAnimo === 'normal'}"
-            name="neutral-outline"
-            (click)="seleccionarEstadoAnimo('neutral')"
-            class="emoji-icon animate__animated animate__zoomIn"
-          ></ion-icon>
+          [ngClass]="{'emoji-selected': estadoAnimo === 'neutral'}"
+          name="remove-circle-outline"
+          (click)="seleccionarEstadoAnimo('neutral')"
+          class="emoji-icon animate__animated animate__zoomIn"
+        ></ion-icon>
+         
           <ion-icon
             [ngClass]="{'emoji-selected': estadoAnimo === 'triste'}"
             name="sad-outline"
@@ -71,9 +73,9 @@
 
     <ng-container *ngIf="mostrarComponenteAI">
       <app-cards-ai
-        [backgroundImageUrl]="backgroundImageUrlAI"
-        [cardTitle]="cardTitleAI"
-        [cardContent]="cardContentAI"
+        [backgroundImageUrl]="sundaycard?.imagen"
+        [cardTitle]="sundaycard?.titulo"
+        [cardContent]="sundaycard?.contenido"
       ></app-cards-ai>
     </ng-container>
 

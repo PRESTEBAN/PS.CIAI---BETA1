@@ -79,8 +79,8 @@ b{
 /* Etiquetas de ion-label */
 ion-label {
     --background: rgba(138, 217, 210, 0);
-    padding-right: 10%;
-    padding-left: 10%;
+    padding-right: 2%;
+    padding-left: 2%;
     white-space: inherit;
     text-align: start;
 }
@@ -99,7 +99,7 @@ ion-item {
     width: 100%;
     text-align: start;
     --background: #D4B2A7;
-    margin: 10px 0;
+    margin: 5px;
     --border-style: none; /* Establece el estilo del borde en 'none' */
 }
 
