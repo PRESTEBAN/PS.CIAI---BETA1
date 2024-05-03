@@ -35,20 +35,36 @@
         [cardContent]="secondCard?.contenido"                                                                             
     ></app-cards-ai>
 
+    <h2 class="anton">Recuerdame cuando usar a </h2>
+
     <ion-item lines="none" class="custom-item">
-      <ion-select [(ngModel)]="horaSeleccionada.hora" interface="popover" name="hora">
-        <ion-select-option *ngFor="let hora of horas" [value]="hora">{{ hora }}</ion-select-option>
-      </ion-select>
-      <ion-select [(ngModel)]="horaSeleccionada.minuto" interface="popover" name="minuto">
+      <ion-select [(ngModel)]="horaSeleccionada.hora" interface="popover" name="hora" [disabled]="!editable">
+        <ion-select-option *ngFor="let hora of horas" [value]="hora" >{{ hora }}</ion-select-option>
+      </ion-select >
+      <ion-select [(ngModel)]="horaSeleccionada.minuto" interface="popover" name="minuto"  [disabled]="!editable">
         <ion-select-option *ngFor="let minuto of minutos" [value]="minuto">{{ minuto }}</ion-select-option>
       </ion-select>
-      <ion-select [(ngModel)]="horaSeleccionada.ampm" interface="popover" name="ampm" (ionChange)="actualizarHorasBola()">
+      <ion-select [(ngModel)]="horaSeleccionada.ampm" interface="popover" name="ampm"  [disabled]="!editable" (ionChange)="actualizarHorasBola()">
         <ion-select-option value="AM">AM</ion-select-option>
         <ion-select-option value="PM">PM</ion-select-option>
       </ion-select>
     </ion-item>
 
-    <ion-button expand="default" fill="outline" type="submit" class="but" color="warning" shape="round" (click)="guardarHorasBola()">Guardar</ion-button>
+    
+    
+    <ion-button expand="default" type="submit" class="but" color="secondary" shape="round" (click)="guardarHorasBola()">Guardar</ion-button>
+    
+    <ion-button expand="default" type="submit" class="but" color="secondary" shape="round" (click)="editable = !editable">
+      {{ editable ? 'Terminar edición' : 'Editar la hora' }}
+    </ion-button>
+    <br>
+
+    <h2 class="anton">Relajate por 5 minutos más</h2>
+    <ion-button (click)="toggleMotores()" [color]="motoresActivados ? 'primary' : 'secondary'" expand="full" shape="round">
+      <ion-icon name="{{ motoresActivados ? 'power' : 'power-outline' }}" slot="start"></ion-icon>
+      {{ motoresActivados ? 'Encendido' : 'Apagado' }}
+    </ion-button>
+    <br>
 
     <h2 class="anton">Bitacora</h2>
     <h4 class="anton">Registra tu estado emocional</h4>

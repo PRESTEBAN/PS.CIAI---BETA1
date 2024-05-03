@@ -4,10 +4,12 @@ import { UserService } from './../services/user.service';
 import { Router } from '@angular/router';
 import { AngularFirestore,AngularFirestoreCollection, QueryFn } from '@angular/fire/compat/firestore';
 import { Subscription } from 'rxjs';
+import { LoadingController, AlertController } from '@ionic/angular';
 import firebase from 'firebase/compat/app'; 
 import { ToastController } from '@ionic/angular';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import 'firebase/compat/database';
+
 
 @Component({
   selector: 'app-principal2',
@@ -19,7 +21,8 @@ export class Principal2Page implements OnInit, OnDestroy {
   backgroundImageUrlAI: string = '';
   cardTitleAI: string = '';
   cardContentAI: string = '';
-  mostrarComponenteAI: boolean = false;
+  mostrarComponenteAI: boolean = true;
+ 
 
   nombreUsuarioCorreo: string = '';
   currentCard: any;
@@ -33,8 +36,14 @@ export class Principal2Page implements OnInit, OnDestroy {
   contadorTriste: number = 0;
   estadoAnimo: string = ''; 
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router, private firestore: AngularFirestore, private toastController: ToastController) {
+  motoresActivados: boolean = false;
+  timeoutId: any;
+  editable: boolean = false;
+  loading: any;
+
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router, private firestore: AngularFirestore, private toastController: ToastController,  private loadingController: LoadingController, private alertController: AlertController) {
     this.actualizarHorasBola();
+    this.editable = false;
    }
 
   ngOnInit() {
@@ -43,6 +52,7 @@ export class Principal2Page implements OnInit, OnDestroy {
       this.nombreUsuarioCorreo = 'Invitado'; // Si no se encuentra el ID de usuario, establece el nombre como 'Invitado'
       return;
     }
+    
 
     this.userService.getUserNameFromDatabase(userId).then(name => {
       this.nombreUsuarioCorreo = name;
@@ -63,7 +73,10 @@ export class Principal2Page implements OnInit, OnDestroy {
     });
     this.verificarHorasBola();
     this.actualizarHorasBola();
+    this.editable = false;
   }
+
+  
 
   horaSeleccionada = {
     ampm: 'AM',
@@ -76,11 +89,38 @@ export class Principal2Page implements OnInit, OnDestroy {
   minutos: number[] = Array.from({ length: 60 }, (_, i) => i);
   horaMostrada = '';
 
+  
+
   actualizarHorasBola() {
     if (this.horaSeleccionada.ampm === 'AM') {
       this.horas = Array.from({ length: 12 }, (_, i) => (i === 0 ? 12 : i + 1));
     } else {
       this.horas = Array.from({ length: 12 }, (_, i) => i + 12);
+    }
+  }
+  async toggleMotores() {
+    this.motoresActivados = !this.motoresActivados;
+  
+    const motorRef = firebase.database().ref('Dispositivos/Motor');
+    const motor2Ref = firebase.database().ref('Dispositivos/Motor2');
+  
+    if (this.motoresActivados) {
+      // Encender los motores
+      motorRef.set(true);
+      motor2Ref.set(true);
+  
+      // Apagar los motores después de 5 minutos
+      this.timeoutId = setTimeout(() => {
+        motorRef.set(false);
+        motor2Ref.set(false);
+        this.motoresActivados = false;
+      }, 5 * 60 * 1000); // 5 minutos en milisegundos
+    } else {
+      // Si el botón se desactiva antes de que pasen los 5 minutos,
+      // detenemos la cuenta regresiva para apagar los motores.
+      clearTimeout(this.timeoutId);
+      motorRef.set(false);
+      motor2Ref.set(false);
     }
   }
 
@@ -94,9 +134,17 @@ export class Principal2Page implements OnInit, OnDestroy {
           minuto: this.horaSeleccionada.minuto,
           ampm: this.horaSeleccionada.ampm
         });
+        this.loading = await this.loadingController.create({
+          message: 'Guardando...',
+          duration: 400,
+        });
+        await this.loading.present();
         console.log('Hora guardada en Firebase.');
       } catch (error) {
         console.error('Error al guardar la hora en Firebase:', error);
+      } finally {
+        // Establecer editable en false independientemente del resultado del guardado
+        this.editable = false;
       }
     }
   }
@@ -146,6 +194,8 @@ export class Principal2Page implements OnInit, OnDestroy {
       }
     }, 1000); // Verificar cada minuto
   }
+
+  
 
   loadSundayCard() {
     let cardList: string[] = [];

@@ -342,3 +342,18 @@ ion-item {
   }
   
   
+  ion-item {
+    border: 3px solid #ffffff;
+    margin-bottom: 15px;
+    margin-top: 20px ;
+    border-radius: 15px;
+    height: 70px;
+    --background: #D4B2A7 ;
+
+    ion-select,
+    ion-input {
+      color: #ffffff;
+      --border-color: #ccc;
+      height: 60px;
+    }
+  }
