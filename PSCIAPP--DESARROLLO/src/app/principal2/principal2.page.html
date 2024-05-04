@@ -69,6 +69,35 @@
     <h2 class="anton">Bitacora</h2>
     <h4 class="anton">Registra tu estado emocional</h4>
 
+ <ion-card>
+ <ion-card-header>
+  <ion-card-title>Selecciona tu estado de ánimo</ion-card-title>
+</ion-card-header>
+<ion-card-content>
+  <div class="emoji-container">
+    <ion-icon
+      [ngClass]="{'emoji-selected': estadoAnimo === 'feliz'}"
+      name="happy-outline"
+      (click)="seleccionarEstadoAnimo('feliz')"
+      class="emoji-icon animate__animated animate__zoomIn"
+    ></ion-icon>
+    <ion-icon
+      [ngClass]="{'emoji-selected': estadoAnimo === 'normal'}"
+      name="remove-circle-outline"
+      (click)="seleccionarEstadoAnimo('normal')"
+      class="emoji-icon animate__animated animate__zoomIn"
+    ></ion-icon>
+    <ion-icon
+      [ngClass]="{'emoji-selected': estadoAnimo === 'triste'}"
+      name="sad-outline"
+      (click)="seleccionarEstadoAnimo('triste')"
+      class="emoji-icon animate__animated animate__zoomIn"
+    ></ion-icon>
+  </div>
+  <ion-button expand="block" (click)="guardarEstadoAnimo()">Guardar</ion-button>
+</ion-card-content>
+</ion-card>
+
 
     <ng-container *ngIf="mostrarComponenteAI">
       <app-cards-ai

@@ -58,6 +58,7 @@ export class Principal2Page implements OnInit, OnDestroy {
       this.nombreUsuarioCorreo = name;
       this.loadUserCards(userId);
       this.checkUserCardsUpdate(userId);
+      this.activarSoloDomingo();
     });
 
     // Suscribirse a los cambios en la colección 'user_cards'
@@ -371,21 +372,21 @@ export class Principal2Page implements OnInit, OnDestroy {
   activarSoloDomingo() {
     const today = new Date();
     const dayOfWeek = today.getDay();
-  
+
     if (dayOfWeek === 0) {
       this.contadorFeliz = 0;
       this.contadorNeutral = 0;
       this.contadorTriste = 0;
-  
+
       const firstDayOfWeek = new Date(today);
       firstDayOfWeek.setDate(today.getDate() - today.getDay() + 1);
-  
+
       for (let i = 0; i < 7; i++) {
         const currentDate = new Date(firstDayOfWeek);
         currentDate.setDate(firstDayOfWeek.getDate() + i);
-  
+
         const field = `day${currentDate.getDate()}`;
-  
+
         const userId = this.userService.getUserId();
         if (userId) {
           const docRef = this.firestore.collection('Calendario').doc(userId);
@@ -411,21 +412,20 @@ export class Principal2Page implements OnInit, OnDestroy {
           });
         }
       }
-  
-      if (this.contadorFeliz > this.contadorNeutral && this.contadorFeliz > this.contadorTriste) {
-        this.loadSundayCard();
-      } else if (this.contadorTriste > this.contadorFeliz && this.contadorTriste > this.contadorNeutral) {
-        this.loadSundayCard();
+    
+        if (this.contadorFeliz > this.contadorNeutral && this.contadorFeliz > this.contadorTriste) {
+          this.loadSundayCard();
+        } else if (this.contadorTriste > this.contadorFeliz && this.contadorTriste > this.contadorNeutral) {
+          this.loadSundayCard();
+        } else {
+          this.loadSundayCard();
+        }
+        this.mostrarComponenteAI = true;
       } else {
-        this.loadSundayCard();
+        this.mostrarComponenteAI = false;
+        console.log('Hoy no es domingo.');
       }
-  
-      this.mostrarComponenteAI = true;
-    } else {
-      this.mostrarComponenteAI = true;
-      console.log('Hoy no es domingo.');
     }
-  }
 
 
   seleccionarEstadoAnimo(estado: string) {
