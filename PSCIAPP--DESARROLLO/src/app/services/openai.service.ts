@@ -15,7 +15,7 @@ export class OpenaiService {
   ) { }
 
   sendQuestion(promt: string, userId: string) {
-    console.log('User ID from OpenaiService:', userId);  // Añade esta línea para depurar
+    console.log('User ID from OpenaiService:', userId); 
     return this.http.post(environment.baseUrl, { promt, userId }).pipe(
       tap((response: any) => {
         this.userService.saveUserMessage(userId, promt, response.bot.content);

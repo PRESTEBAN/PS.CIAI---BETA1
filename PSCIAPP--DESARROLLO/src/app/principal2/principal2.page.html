@@ -82,9 +82,9 @@
       class="emoji-icon animate__animated animate__zoomIn"
     ></ion-icon>
     <ion-icon
-      [ngClass]="{'emoji-selected': estadoAnimo === 'normal'}"
+      [ngClass]="{'emoji-selected': estadoAnimo === 'neutral'}"
       name="remove-circle-outline"
-      (click)="seleccionarEstadoAnimo('normal')"
+      (click)="seleccionarEstadoAnimo('neutral')"
       class="emoji-icon animate__animated animate__zoomIn"
     ></ion-icon>
     <ion-icon
@@ -99,16 +99,21 @@
 </ion-card>
 
 
-    <ng-container *ngIf="mostrarComponenteAI">
-      <app-cards-ai
-        [backgroundImageUrl]="sundaycard?.imagen"
-        [cardTitle]="sundaycard?.titulo"
-        [cardContent]="sundaycard?.contenido"
-      ></app-cards-ai>
-    </ng-container>
+<ng-container *ngIf="mostrarComponenteAI">
+  <app-cards-ai
+    [backgroundImageUrl]="sundaycard?.imagen"
+    [cardTitle]="sundaycard?.titulo"
+    [cardContent]="sundaycard?.contenido"
+  ></app-cards-ai>
+</ng-container>
+
 
 
     <ion-datetime locale="es-ES" color="tertiary"></ion-datetime>
+
+    <ion-button (click)="activarSoloDomingo()" expand="block" fill="clear" shape="round">
+      probar
+    </ion-button>
   </div>
 </ion-content>
 <ion-footer class="ion-no-border">

@@ -34,7 +34,7 @@ export class Principal2Page implements OnInit, OnDestroy {
   contadorFeliz: number = 0;
   contadorNeutral: number = 0;
   contadorTriste: number = 0;
-  estadoAnimo: string = ''; 
+  estadoAnimo: string = '' ; 
 
   motoresActivados: boolean = false;
   timeoutId: any;
@@ -59,6 +59,7 @@ export class Principal2Page implements OnInit, OnDestroy {
       this.loadUserCards(userId);
       this.checkUserCardsUpdate(userId);
       this.activarSoloDomingo();
+      console.log('Valor de this.estadoAnimo después de la consulta a la base de datos:', this.estadoAnimo);
     });
 
     // Suscribirse a los cambios en la colección 'user_cards'
@@ -196,12 +197,10 @@ export class Principal2Page implements OnInit, OnDestroy {
     }, 1000); // Verificar cada minuto
   }
 
-  
-
-  loadSundayCard() {
+  loadSundayCard(sentimiento: string) {
     let cardList: string[] = [];
-  
-    switch (this.estadoAnimo) {
+    
+    switch (sentimiento) {
       case 'feliz':
         cardList = ['card10', 'card14', 'card22', 'card5', 'card7', 'card8', 'card20', 'card26', 'card6'];
         break;
@@ -215,9 +214,9 @@ export class Principal2Page implements OnInit, OnDestroy {
         console.error('Estado de ánimo no reconocido');
         return;
     }
-  
+    
     const randomCardId = cardList[Math.floor(Math.random() * cardList.length)];
-  
+    
     this.firestore.collection('cards').doc(randomCardId).get().subscribe(doc => {
       if (doc.exists) {
         const data = doc.data() as any;
@@ -234,6 +233,7 @@ export class Principal2Page implements OnInit, OnDestroy {
       console.error('Error al cargar la tarjeta:', error);
     });
   }
+  
 
 
   loadUserCards(userId: string) {
@@ -371,22 +371,22 @@ export class Principal2Page implements OnInit, OnDestroy {
 
   activarSoloDomingo() {
     const today = new Date();
-    const dayOfWeek = today.getDay();
-
+    const dayOfWeek = today.getDay(); // Obtener el día de la semana actual (0: domingo, 1: lunes, ..., 6: sábado)
+  
     if (dayOfWeek === 0) {
       this.contadorFeliz = 0;
       this.contadorNeutral = 0;
       this.contadorTriste = 0;
-
+  
       const firstDayOfWeek = new Date(today);
       firstDayOfWeek.setDate(today.getDate() - today.getDay() + 1);
-
+  
       for (let i = 0; i < 7; i++) {
         const currentDate = new Date(firstDayOfWeek);
         currentDate.setDate(firstDayOfWeek.getDate() + i);
-
+  
         const field = `day${currentDate.getDate()}`;
-
+  
         const userId = this.userService.getUserId();
         if (userId) {
           const docRef = this.firestore.collection('Calendario').doc(userId);
@@ -413,59 +413,69 @@ export class Principal2Page implements OnInit, OnDestroy {
         }
       }
     
-        if (this.contadorFeliz > this.contadorNeutral && this.contadorFeliz > this.contadorTriste) {
-          this.loadSundayCard();
-        } else if (this.contadorTriste > this.contadorFeliz && this.contadorTriste > this.contadorNeutral) {
-          this.loadSundayCard();
-        } else {
-          this.loadSundayCard();
-        }
-        this.mostrarComponenteAI = true;
+      let sentimientoPredominante = '';
+      if (this.contadorFeliz > this.contadorNeutral && this.contadorFeliz > this.contadorTriste) {
+        sentimientoPredominante = 'feliz';
+      } else if (this.contadorTriste > this.contadorFeliz && this.contadorTriste > this.contadorNeutral) {
+        sentimientoPredominante = 'triste';
       } else {
-        this.mostrarComponenteAI = false;
-        console.log('Hoy no es domingo.');
+        sentimientoPredominante = 'neutral';
       }
-    }
-
-
-  seleccionarEstadoAnimo(estado: string) {
-    this.estadoAnimo = estado;
-  }
-
-
-  async guardarRespuesta(sentimiento: string) {
-    const userId = this.userService.getUserId();
-    if (userId) {
-      const date = new Date();
-      const day = date.getDate();
-      const field = `day${day}`;
   
-      try {
-        // Obtener la colección 'Calendario' filtrando por userIDCal igual al userId actual
-        const collectionRef: AngularFirestoreCollection<any> = this.firestore.collection<any>('Calendario', ref => ref.where('userIDCal', '==', userId));
-        const querySnapshot = await collectionRef.get().toPromise();
-        
-        if (querySnapshot && !querySnapshot.empty) {
-          // Obtener el primer documento que cumple con el filtro (debería haber solo uno)
-          const doc = querySnapshot.docs[0];
-          // Actualizar el campo correspondiente al día en el calendario del usuario
-          await doc.ref.update({ [field]: sentimiento });
-          console.log('Respuesta actualizada con éxito en el calendario del usuario.');
-        } else {
-          console.error('El documento del calendario no existe para este usuario.');
-        }
-      } catch (error) {
-        console.error('Error al guardar la respuesta:', error);
-      }
+      // Cargar la tarjeta correspondiente al sentimiento predominante de la semana anterior
+      this.loadSundayCard(sentimientoPredominante);
+      this.mostrarComponenteAI = true;
     } else {
-      console.error('No se pudo obtener el ID de usuario.');
+      this.mostrarComponenteAI = false;
+      console.log('Hoy no es domingo.');
     }
   }
-  
-  async guardarEstadoAnimo() {
-    await this.guardarRespuesta(this.estadoAnimo);
-    this.mostrarNotificacion(`Estado de ánimo actualizado: ${this.estadoAnimo}`);
+
+    seleccionarEstadoAnimo(estado: string) {
+      console.log('Estado seleccionado:', estado);
+     this.estadoAnimo = estado;
+     console.log('Estado de ánimo actual:', this.estadoAnimo);
+    }
+
+    async guardarEstadoAnimo() {
+      console.log('Estado de ánimo seleccionado:', this.estadoAnimo);
+      await this.guardarRespuesta(this.estadoAnimo); // Guardar el estado de ánimo en la base de datos
+      console.log('Estado de ánimo guardado correctamente en la base de datos.');
+      this.mostrarNotificacion(`Estado de ánimo actualizado: ${this.estadoAnimo}`);
+    }
+
+
+    async guardarRespuesta(sentimiento: string) {
+  const userId = this.userService.getUserId();
+  if (userId) {
+    const date = new Date();
+    const day = date.getDate();
+    const field = `day${day}`;
+
+    try {
+      // Obtener la colección 'Calendario' filtrando por userIDCal igual al userId actual
+      const collectionRef: AngularFirestoreCollection<any> = this.firestore.collection<any>('Calendario', ref => ref.where('userIDCal', '==', userId));
+      const querySnapshot = await collectionRef.get().toPromise();
+      
+      if (querySnapshot && !querySnapshot.empty) {
+        // Obtener el primer documento que cumple con el filtro (debería haber solo uno)
+        const doc = querySnapshot.docs[0];
+        // Actualizar el campo correspondiente al día en el calendario del usuario
+        await doc.ref.update({ [field]: sentimiento });
+        console.log('Respuesta actualizada con éxito en el calendario del usuario.');
+      } else {
+        console.error('El documento del calendario no existe para este usuario.');
+      }
+    } catch (error) {
+      console.error('Error al guardar la respuesta:', error);
+    }
+  } else {
+    console.error('No se pudo obtener el ID de usuario.');
   }
+}
+    
+  
+
 
   async mostrarNotificacion(mensaje: string) {
     const toast = await this.toastController.create({
