@@ -21,7 +21,8 @@ export class SignUpPage implements OnInit {
   ) {
     this.formReg = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required])
+      password: new FormControl('', [Validators.required]),
+      terms: new FormControl(false)
     });
   }
 
@@ -55,4 +56,9 @@ export class SignUpPage implements OnInit {
 
     await alert.present();
   }
+
+  openTermsPage() {
+    window.open('URL_DE_TUS_TERMINOS_Y_CONDICIONES', '_blank');
+  }
+
 }

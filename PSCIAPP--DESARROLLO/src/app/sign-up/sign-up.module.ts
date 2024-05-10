@@ -10,6 +10,8 @@ import { SignUpPage } from './sign-up.page';
 
 import {  ReactiveFormsModule } from '@angular/forms';
 
+import { CardSlideComponent } from '../components/card-slide/card-slide.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +20,6 @@ import {  ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     SignUpPageRoutingModule
   ],
-  declarations: [SignUpPage]
+  declarations: [SignUpPage, CardSlideComponent]
 })
 export class SignUpPageModule {}
