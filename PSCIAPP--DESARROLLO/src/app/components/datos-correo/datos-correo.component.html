@@ -11,9 +11,9 @@
       <form (ngSubmit)="submitForm()">
         <ion-list>
           <!-- Campo para el nombre -->
-          <ion-label class="nacimientoText"><strong>¿Como te llamas?</strong></ion-label>
+          <ion-label class="nacimientoText"><strong>¿Cómo te llamas?</strong></ion-label>
           <ion-item  [ngClass]="{'invalid-field': !nombre}">
-          <ion-label class="nameText" position="floating"><strong>Como te gustaria que te llame PSCI.IA : </strong></ion-label>
+          <ion-label class="nameText" position="floating"><strong>Cómo te gustaria que te llame PSCI.IA : </strong></ion-label>
             <ion-input [(ngModel)]="nombre" name="nombre" required></ion-input>
           </ion-item>
 
