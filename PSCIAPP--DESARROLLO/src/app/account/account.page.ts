@@ -15,6 +15,7 @@ export class AccountPage implements OnInit {
   genero: string | null = null;
   Nacimiento: string | null = null;
   edad: number | null = null;
+  
 
   constructor(private userService: UserService, private router: Router,private firestore: AngularFirestore) { }
 
@@ -138,24 +139,7 @@ async getGeneroFromDatabase(userId: string): Promise<string | null> {
     }
   }
 
-  logout() {
-    const userId = this.userService.getUserId();
-  
-    if (userId !== undefined) {
-      // Limpiar los mensajes al cerrar sesión
-      const userMessagesRef = this.userService.getUserMessagesRef(userId);
-  
-      if (userMessagesRef) {
-        userMessagesRef.get().subscribe(snapshot => {
-          snapshot.forEach(doc => {
-            doc.ref.delete();
-          });
-        });
-      } else {
-        console.error('User Messages Reference is null');
-      }
-    }
-    
+  logout() {  
     this.userService.logout().then(() => {
       this.router.navigate(['/home']);
     }).catch((error) => {

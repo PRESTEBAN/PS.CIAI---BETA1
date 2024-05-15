@@ -369,6 +369,8 @@ export class Principal2Page implements OnInit, OnDestroy {
     }
   }
 
+  
+
   activarSoloDomingo() {
     const today = new Date();
     const dayOfWeek = today.getDay(); // Obtener el día de la semana actual (0: domingo, 1: lunes, ..., 6: sábado)
@@ -411,20 +413,19 @@ export class Principal2Page implements OnInit, OnDestroy {
             console.error('Error al obtener el documento del calendario:', error);
           });
         }
+
+        let sentimientoPredominante = '';
+        if (this.contadorFeliz > this.contadorNeutral && this.contadorFeliz > this.contadorTriste) {
+          sentimientoPredominante = 'feliz';
+        } else if (this.contadorTriste > this.contadorFeliz && this.contadorTriste > this.contadorNeutral) {
+          sentimientoPredominante = 'triste';
+        } else {
+          sentimientoPredominante = 'neutral';
+        }
+        this.loadSundayCard(sentimientoPredominante);
+        this.mostrarComponenteAI = true;
       }
-    
-      let sentimientoPredominante = '';
-      if (this.contadorFeliz > this.contadorNeutral && this.contadorFeliz > this.contadorTriste) {
-        sentimientoPredominante = 'feliz';
-      } else if (this.contadorTriste > this.contadorFeliz && this.contadorTriste > this.contadorNeutral) {
-        sentimientoPredominante = 'triste';
-      } else {
-        sentimientoPredominante = 'neutral';
-      }
-  
       // Cargar la tarjeta correspondiente al sentimiento predominante de la semana anterior
-      this.loadSundayCard(sentimientoPredominante);
-      this.mostrarComponenteAI = true;
     } else {
       this.mostrarComponenteAI = false;
       console.log('Hoy no es domingo.');
@@ -539,7 +540,7 @@ async lanzarNotificacionBola() {
       notifications: [
         {
           title: "Hora de relajarse!",
-          body: "¡Hora de relajarse!, es tiempo de usar tu ",
+          body: "¡Hora de relajarse!, es tiempo de usar tu PSIBALL",
           id: 2,
           schedule: { 
             at: new Date(Date.now() + 1000), // Puedes ajustar el tiempo de espera aquí

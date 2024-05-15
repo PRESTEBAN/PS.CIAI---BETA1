@@ -233,6 +233,7 @@ async lanzarNotificacion() {
             allowWhileIdle: true // Permite que la notificación se ejecute incluso durante el modo reposo
           },
           sound: "beep.wav",
+          
           actionTypeId: "",
           extra: {
             showWhenSuspended: true, // Muestra la notificación incluso cuando el dispositivo esté en suspensión

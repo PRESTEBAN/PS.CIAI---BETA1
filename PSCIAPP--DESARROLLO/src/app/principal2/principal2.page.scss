@@ -59,6 +59,13 @@ ion-toolbar{
     font-family: "Sedan", serif;    font-weight: normal; /* No es necesario especificar 400 si es la fuente normal */
     color: #A38F85;
 }
+
+.anton2 {
+    font-family: "Sedan", serif;    font-weight: normal; /* No es necesario especificar 400 si es la fuente normal */
+    color: #A38F85;
+    display: flex;
+    justify-content: center;
+}
 .conte{
     background-color:#E7D7C9;
     width: 90%;
@@ -129,6 +136,12 @@ ion-label{
 ion-datetime {
     margin: 0 auto; /* Aplica márgenes automáticos horizontalmente para centrar */
     display: block; /* Asegura que el elemento sea un bloque para que los márgenes automáticos funcionen */
+
+}
+
+ion-datetime.datetime-day:not(.datetime-day-selected) .datetime-text:before {
+    content: attr(data-day); /* Muestra el contenido del atributo 'data-day' */
+    color: red; /* Cambia el color a tu preferencia */
 }
 
 ion-card-content{
@@ -266,6 +279,7 @@ ion-datetime {
     border-radius: 20px;
     box-shadow: rgba(var(--ion-color-rose-rgb), 0.3) 0px 10px 15px -3px;
 }
+
 ion-card{
     display: grid;
     justify-content:center;
@@ -340,6 +354,7 @@ ion-item {
   .custom-item ion-select {
     font-size: 14px; /* Ajusta el tamaño de fuente según sea necesario */
   }
+  
   
   
   ion-item {

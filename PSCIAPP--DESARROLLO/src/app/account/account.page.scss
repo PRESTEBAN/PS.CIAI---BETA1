@@ -83,7 +83,16 @@ ion-label {
     padding-left: 2%;
     white-space: inherit;
     text-align: start;
+    display: block; /* Cambia a bloque */
+    margin-bottom: 5px; /* Espacio entre etiqueta y contenido */; 
 }
+
+ion-text {
+    display: block; /* Cambia a bloque */
+    margin-bottom: 15px; /* Espacio entre cada línea de texto */
+}
+
+
 ion-button {
     width: 250px; /* Valor alto para hacerlo circular */
     height: 75px;
@@ -151,4 +160,9 @@ img {
 /* Estilo de los iconos seleccionados */
 #select {
     background-color: #D4B2A7;
+}
+
+.tamañoLetra{
+    font-size: 20px;
+    font-weight: bold ;
 }

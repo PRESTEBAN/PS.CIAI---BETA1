@@ -35,7 +35,8 @@
         [cardContent]="secondCard?.contenido"                                                                             
     ></app-cards-ai>
 
-    <h2 class="anton">Recuerdame cuando usar a </h2>
+    <h2 class="anton2">Recuerdame cuando usar a</h2>
+    <h2 class="anton2">PSIBALL</h2>
 
     <ion-item lines="none" class="custom-item">
       <ion-select [(ngModel)]="horaSeleccionada.hora" interface="popover" name="hora" [disabled]="!editable">
@@ -108,8 +109,7 @@
 </ng-container>
 
 
-
-    <ion-datetime locale="es-ES" color="tertiary"></ion-datetime>
+    <ion-datetime locale="es-ES" color="tertiary" ></ion-datetime>
 
     <ion-button (click)="activarSoloDomingo()" expand="block" fill="clear" shape="round">
       probar

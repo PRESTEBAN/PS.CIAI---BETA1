@@ -33,24 +33,24 @@
       </ion-card-header>
 
       <ion-card-content>
-        <ion-item>
-          <ion-label>Nombre:</ion-label>
+        <ion-item lines="none">
+          <ion-label position="stacked" class="tamañoLetra">Nombre:</ion-label>
           <ion-text>{{ nombreUsuario }}</ion-text>
         </ion-item>
-        <ion-item>
-          <ion-label>Correo electrónico:</ion-label>
+        <ion-item lines="none">
+          <ion-label  position="stacked" class="tamañoLetra">Correo electrónico:</ion-label>
           <ion-text> {{ userEmail }} </ion-text>
         </ion-item>
-        <ion-item>
-          <ion-label>Género:</ion-label>
+        <ion-item lines="none">
+          <ion-label  position="stacked" class="tamañoLetra">Género:</ion-label>
           <ion-text>{{ genero }}</ion-text>
         </ion-item>
-        <ion-item>
-          <ion-label>Fecha de Nacimiento:</ion-label>
+        <ion-item lines="none">
+          <ion-label  position="stacked" class="tamañoLetra">Fecha de Nacimiento:</ion-label>
           <ion-text>{{Nacimiento}}</ion-text>
         </ion-item>
-        <ion-item>
-          <ion-label>Edad:</ion-label>
+        <ion-item lines="none">
+          <ion-label  position="stacked" class="tamañoLetra" >Edad:</ion-label>
           <ion-text>{{edad}}</ion-text>
         </ion-item>
         <ion-item>
@@ -65,9 +65,6 @@
         <ion-card-title><b>Opciones de la Cuenta</b></ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-button color="secondary" shape="round"><!-- (click)="abrirTerminosCondiciones()" -->
-          <ion-label>Términos y Condiciones</ion-label>
-        </ion-button>
         <ion-button button color="success" shape="round" href="tel:+593989681295
         "><!-- (click)="cerrarSesion()" -->
           <ion-label>AYUDA</ion-label>
