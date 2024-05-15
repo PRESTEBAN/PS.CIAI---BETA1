@@ -65,6 +65,12 @@ p{
   border-radius: 20PX;
 }
 
+.center{
+ display: flex;
+ justify-content: center;
+ margin-right: 30px;
+}
+
 .chat-icon {
   width: 30px; /* Ajusta el ancho según tus necesidades */
   height: 30px; /* Ajusta la altura según tus necesidades */
