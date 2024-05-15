@@ -1,91 +1,89 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sedan:ital@0;1&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0;1&display=swap');
+
+* {
   font-family: "Montserrat", sans-serif;
 }
+
 ion-content {
-    --ion-background-color: #E7D7C9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  
-  ion-toolbar {
-    --background: #EDE9E3;
-    color: #D4B2A7;
-    font-family: "Sedan", serif;
-  }
-  
-  img{
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-  }
-  ion-title {
-    text-align: center;
-    font-size: 20px;
-  }
-  
-  ion-button {
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    font-family: "Montserrat", sans-serif;    margin: 15px; /* Separación de 15px del borde */
-  }
-  
-  ion-button:hover {
-    transform: scale(1.05);
-  }
-  
-  ion-button[selected='true'] {
-    background-color: #254A59; /* Cambié el color de fondo cuando está deshabilitado */
-    color: #F2E5D5;
-  }
-  
-  ion-button[selected='false'] {
-    background-color: #536FA6; /* Cambié el color de fondo cuando está habilitado */
-    color: #F2E5D5;
-  }
-  
-  ion-card {
-    cursor: pointer;
-    background-color: #E7D7C9;
-  }
-  ion-card-content{
-    color: #EDE9E3;
-    background-color: #D4B2A7;
-    height: 300px;
-    margin-top: 5px;
-    text-align: center;
-  }
-  ion-card:hover {
-    transform: scale(1.05);} 
-  
-  ion-card.selected {
-    border: 2px solid #4caf50;
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2); /* Mantenemos la sombra cuando está seleccionado */
-  }
-  
-  ion-button {
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 8px rgba(197, 183, 183, 0.1);
-    border-radius: 15px;
-    font-family: "Montserrat", sans-serif;    margin: 15px;
-  }
-  
-  ion-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumentamos la sombra al pasar el ratón */
-  }
-  
-  ion-button[selected='true'] {
-    background-color: #254A59;
-    color: #F2E5D5;
-  }
-  
-  ion-button[selected='false'] {
-    background-color: #536FA6;
-    color: #F2E5D5;
-  }
-  
+  --ion-background-color: #E7D7C9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+ion-toolbar {
+  --background: #EDE9E3;
+  color: #D4B2A7;
+  font-family: "Sedan", serif;
+}
+
+img {
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+ion-title {
+  text-align: center;
+  font-size: 20px;
+}
+
+ion-button {
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  font-family: "Montserrat", sans-serif;
+  margin: 15px;
+}
+
+ion-button:hover {
+  transform: scale(1.05);
+}
+
+ion-button[selected='true'] {
+  background-color: #254A59;
+  color: #F2E5D5;
+}
+
+ion-button[selected='false'] {
+  background-color: #536FA6;
+  color: #F2E5D5;
+}
+
+ion-card {
+  cursor: pointer;
+  background-color: #E7D7C9;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+ion-card-content {
+  padding: 16px;
+  transition: max-height 0.3s, opacity 0.3s;
+  max-height: 400px; /* Adjust this value as needed */
+  opacity: 1;
+  overflow: hidden;
+}
+
+ion-card:hover {
+  transform: scale(1.05);
+}
+
+ion-card.selected {
+  border: 2px solid #4caf50;
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+p.collapsed {
+  max-height: 60px; /* Height when collapsed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+p {
+  max-height: none; /* Full height when expanded */
+  white-space: normal;
+}
