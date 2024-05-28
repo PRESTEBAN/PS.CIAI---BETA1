@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Selecciona la personalidad de PSCYAI
+      Selecciona Una Personalidad
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +15,7 @@
           <ion-card-content class="card-content">
             <h2>{{card.name}}</h2>
             <p [class.collapsed]="!card.expanded">{{card.description}}</p>
-            <ion-button fill="clear" (click)="toggleReadMore(card, $event)">{{card.expanded ? 'menos' : 'Leer más'}}</ion-button>
+            <ion-button fill="clear" color="tertiary" (click)="toggleReadMore(card, $event)">{{card.expanded ? 'menos' : 'Leer más'}}</ion-button>
           </ion-card-content>
         </ion-card>
       </ion-col>

@@ -102,11 +102,12 @@ export class Principal2Page implements OnInit, OnDestroy {
   }
   async toggleMotores() {
     this.motoresActivados = !this.motoresActivados;
+    const isAuthorized = await this.userService.isAuthorized();
   
     const motorRef = firebase.database().ref('Dispositivos/Motor');
     const motor2Ref = firebase.database().ref('Dispositivos/Motor2');
   
-    if (this.motoresActivados) {
+    if (this.motoresActivados && isAuthorized) {
       // Encender los motores
       motorRef.set(true);
       motor2Ref.set(true);
@@ -129,7 +130,10 @@ export class Principal2Page implements OnInit, OnDestroy {
   async guardarHorasBola() {
     console.log('Hora seleccionada:', this.horaSeleccionada);
     const userId = this.userService.getUserId(); // Obtener el ID del usuario
-    if (userId) {
+    const isAuthorized = await this.userService.isAuthorized();
+
+
+    if (userId && isAuthorized) {
       try {
         await this.firestore.collection('timeaparate').doc(userId).set({
           hora: this.horaSeleccionada.hora,

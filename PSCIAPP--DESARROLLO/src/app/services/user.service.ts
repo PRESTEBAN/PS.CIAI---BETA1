@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { HttpClient } from '@angular/common/http';
-
+import firebase from 'firebase/compat/app'
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,9 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
   public auth: Auth;
   public firestore: AngularFirestore;
-  
+  private authorizedUserEmail = 'admintesis@admin.com';
 
-  constructor(auth: Auth, firestore: AngularFirestore, private http: HttpClient) {
+  constructor(auth: Auth, firestore: AngularFirestore, private http: HttpClient,private afAuth: AngularFireAuth) {
     this.auth = auth;
     this.firestore = firestore;
   }
@@ -88,6 +89,11 @@ export class UserService {
   const storedName = userId ? localStorage.getItem(`correoContraseñaNombre_${userId}`) : null;
   return storedName || 'Invitado';
  }
+
+ async isAuthorized(): Promise<boolean> {
+  const user = await this.afAuth.currentUser;
+  return user?.email === this.authorizedUserEmail;
+}
 
   async saveFormData(userId: string, nombre: string, fechaNacimiento: string, genero: string) {
     try {

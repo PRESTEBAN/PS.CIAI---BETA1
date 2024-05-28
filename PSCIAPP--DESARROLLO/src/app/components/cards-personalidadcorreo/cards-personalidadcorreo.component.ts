@@ -30,12 +30,12 @@ export class CardsPersonalidadcorreoComponent implements OnInit {
   loading: any;
 
   cards = [
-    { name: 'Levi', description: 'Levi es una IA relajada y calmada. Su enfoque se basa en inducir la tranquilidad y reducir el estrés. Proporciona meditaciones guiadas y consejos para mantener la calma.', image: 'https://i.ibb.co/vw0LdKr/pesantez.png', expanded: false },
-    { name: 'Suri', description: 'Suri es una IA amigable y compasiva. Su enfoque principal es brindar apoyo emocional y proporcionar información tranquilizadora. Siempre trata a los usuarios con empatía y amabilidad.', image: 'https://i.ibb.co/R4shwS8/Suri.png', expanded: false },
-    { name: 'Adam', description: 'Adam es una IA práctica y analítica. Se centra en ofrecer soluciones basadas en datos y enfoques probados para abordar la ansiedad. Siempre busca proporcionar estrategias efectivas.', image: 'https://i.ibb.co/vsw4jKp/Panjon.png', expanded: false },
-    { name: 'Lee', description: 'Lee es una IA informativa y educativa. Se enfoca en proporcionar conocimiento sobre la ansiedad, sus causas y formas de manejarla. Busca empoderar a los usuarios a través de la comprensión.', image: 'https://i.ibb.co/7S4H9tP/S-ria.png', expanded: false },
-    { name: 'Daya', description: 'Daya es una IA optimista y motivadora. Su objetivo es inspirar a los usuarios a superar la ansiedad. Proporciona sugerencias positivas y técnicas para manejar el estrés.', image: 'https://i.ibb.co/Tb6jRcn/Amelia.png', expanded: false },
-    { name: 'Sara', description: 'Sara es una IA comprensiva y paciente. Está diseñada para escuchar atentamente y ofrecer apoyo emocional personalizado. Siempre se preocupa por el bienestar del usuario.', image: 'https://i.ibb.co/Lv2wM6D/Sara.png', expanded: false },
+    { name: 'Levi', description: 'Levi es una IA relajada y calmada. Su enfoque se basa en inducir la tranquilidad y reducir el estrés. Proporciona meditaciones guiadas y consejos para mantener la calma.', image: 'https://i.ibb.co/L8n3M0k/leviImg.png', expanded: false },
+    { name: 'Suri', description: 'Suri es una IA amigable y compasiva. Su enfoque principal es brindar apoyo emocional y proporcionar información tranquilizadora. Siempre trata a los usuarios con empatía y amabilidad.', image: 'https://i.ibb.co/j5mpyxK/SuriImg.png', expanded: false },
+    { name: 'Adam', description: 'Adam es una IA práctica y analítica. Se centra en ofrecer soluciones basadas en datos y enfoques probados para abordar la ansiedad. Siempre busca proporcionar estrategias efectivas.', image: 'https://i.ibb.co/PFqQVLb/AdamImg.png', expanded: false },
+    { name: 'Lee', description: 'Lee es una IA informativa y educativa. Se enfoca en proporcionar conocimiento sobre la ansiedad, sus causas y formas de manejarla. Busca empoderar a los usuarios a través de la comprensión.', image: 'https://i.ibb.co/b3Fnbwr/LeeImg.png', expanded: false },
+    { name: 'Daya', description: 'Daya es una IA optimista y motivadora. Su objetivo es inspirar a los usuarios a superar la ansiedad. Proporciona sugerencias positivas y técnicas para manejar el estrés.', image: 'https://i.ibb.co/3YbwDTb/DayaImg.png', expanded: false },
+    { name: 'Sara', description: 'Sara es una IA comprensiva y paciente. Está diseñada para escuchar atentamente y ofrecer apoyo emocional personalizado. Siempre se preocupa por el bienestar del usuario.', image: 'https://i.ibb.co/Hx8zktt/SaraImg.png', expanded: false },
   ];
 
   selectedCard: number | null = null;
