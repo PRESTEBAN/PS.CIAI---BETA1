@@ -41,6 +41,11 @@ app.post('/send-notification', async (req, res) => {
         title: 'Nueva foto',
         body: message,
       },
+      android: {
+        notification: {
+          "iconColor": "#488AFF",
+        }
+      },
        token: token,
     };
 
