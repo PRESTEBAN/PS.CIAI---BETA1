@@ -44,7 +44,7 @@ app.post('/send-notification', async (req, res) => {
       },
       android: {
         notification: {
-          imageUrl: imageUrl,
+          imageUrl: 'https://i.ibb.co/HLvMS2Z/formulario.jpg',
           vibrationPattern: [200, 500, 200, 500],
           priority: 'high',
           defaultSound: true
@@ -58,7 +58,7 @@ app.post('/send-notification', async (req, res) => {
           }
         },
         fcm_options: {
-          image: imageUrl
+          image: 'https://i.ibb.co/HLvMS2Z/formulario.jpg'
         }
       },
       token: token,
