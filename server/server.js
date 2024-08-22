@@ -41,14 +41,6 @@ app.post('/send-notification', async (req, res) => {
         title: 'Nueva foto',
         body: message,
       },
-      android: {
-        notification: {
-          icon: 'ic_notification',
-          color: '#FF0000', // Opcional: color de fondo del icono
-          vibrateTimingsMillis: [0, 500, 1000, 500], // Patrón de vibración en milisegundos
-          priority: 'high',
-        }
-      },
        token: token,
     };
 
