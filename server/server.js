@@ -44,7 +44,8 @@ app.post('/send-notification', async (req, res) => {
       android: {
         notification: {
           icon: 'ic_notification',
-          color: '#FF0000' // Opcional: color de fondo del icono
+          color: '#FF0000', // Opcional: color de fondo del icono
+          vibrate: true
         }
       },
        token: token,
