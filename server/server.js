@@ -42,7 +42,7 @@ app.post('/send-notification', async (req, res) => {
         body: message,
         imageUrl: 'https://i.ibb.co/HLvMS2Z/formulario.jpg',
       },
-      token: token,
+       token: token,
     };
 
     const response = await admin.messaging().send(messagePayload);
