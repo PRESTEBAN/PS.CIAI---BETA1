@@ -41,6 +41,18 @@ app.post('/send-notification', async (req, res) => {
         title: 'Nueva foto',
         body: message,
       },
+      android: {
+        notification: {
+          vibrate: [200, 500, 200, 500] // Patrón de vibración en milisegundos
+        }
+      },
+      apns: {
+        payload: {
+          aps: {
+            sound: 'default'
+          }
+        }
+      },
       token: token,
     };
 
