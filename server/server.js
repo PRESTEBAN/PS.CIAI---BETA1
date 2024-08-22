@@ -42,25 +42,6 @@ app.post('/send-notification', async (req, res) => {
         body: message,
         imageUrl: 'https://i.ibb.co/HLvMS2Z/formulario.jpg',
       },
-      android: {
-        notification: {
-          imageUrl: 'https://i.ibb.co/HLvMS2Z/formulario.jpg',
-          vibrationPattern: [200, 500, 200, 500],
-          priority: 'high',
-          defaultSound: true
-        }
-      },
-      apns: {
-        payload: {
-          aps: {
-            sound: 'default',
-            badge: 1
-          }
-        },
-        fcm_options: {
-          image: 'https://i.ibb.co/HLvMS2Z/formulario.jpg'
-        }
-      },
       token: token,
     };
 
