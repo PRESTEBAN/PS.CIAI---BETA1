@@ -45,7 +45,8 @@ app.post('/send-notification', async (req, res) => {
         notification: {
           icon: 'ic_notification',
           color: '#FF0000', // Opcional: color de fondo del icono
-          vibrate: [100, 200, 100, 300]
+          vibrateTimingsMillis: [0, 500, 1000, 500], // Patrón de vibración en milisegundos
+          priority: 'high',
         }
       },
        token: token,
