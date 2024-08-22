@@ -44,14 +44,21 @@ app.post('/send-notification', async (req, res) => {
       },
       android: {
         notification: {
-          vibrate: [200, 500, 200, 500] // Patrón de vibración en milisegundos
+          imageUrl: imageUrl,
+          vibrationPattern: [200, 500, 200, 500],
+          priority: 'high',
+          defaultSound: true
         }
       },
       apns: {
         payload: {
           aps: {
-            sound: 'default'
+            sound: 'default',
+            badge: 1
           }
+        },
+        fcm_options: {
+          image: imageUrl
         }
       },
       token: token,
