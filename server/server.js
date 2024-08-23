@@ -43,8 +43,8 @@ app.post('/send-notification', async (req, res) => {
       },
       android: {
         notification: {
-          vibrate_timings: ["0s", "0.5s", "0.5s", "0.5s"],
-          default_vibrate_timings: false,
+          vibrateTimingsMillis: [0, 500, 1000, 500], // Patrón de vibración: [espera, vibrar, pausa, vibrar]
+          priority: 'high',
         }
       },
        token: token,
